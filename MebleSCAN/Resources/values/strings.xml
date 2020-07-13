@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">MebleSCAN</string>
+    <string name="action_settings">Settings</string>
+  <!--Ekran logowania -->
+    <string name="hello">Witaj, zaloguj się.</string>
+    <string name="hintLogin">LOGIN</string>
+    <string name="hintPassword">HASŁO</string>
+    <string name="btnLogin">ZALOGUJ</string>
+    <string name="cancel">ANULUJ</string>
+    <string name="noInternetConnection">Brak internetu</string>
+    <string name="checkConnection">Sprawdź swoje połączenie.</string>
+    <string name="OKbutton">OK</string>
+    <string name="loginError">Błąd logowania</string>
+    <string name="correctLogin">Podane dane logowania są niepoprawne.</string>
+    <string name="emptyLogin">Nie podano danych logowania lub dane są błędne.</string>
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
+  <!--Ekran alertu wylogowania-->
+  <string name="logoutAlert">Wyloguj</string>
+  <string name="logoutAlertMsg">Czy na pewno chcesz się wylogować?</string>
+  <!--Menu-->
+    <string name="menu_scan">Skanowanie reklamacji</string>
+    <string name="menu_list">Lista reklamacji</string>
+  <!--nav_furniture_header-->
+    <string name="loginAs">Zalogowany jako : </string>
+    <string name="singOut">Wyloguj sie</string>
+</resources>
