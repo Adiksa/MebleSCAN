@@ -24,4 +24,8 @@
   <!--nav_furniture_header-->
     <string name="loginAs">Zalogowany jako : </string>
     <string name="singOut">Wyloguj sie</string>
+  <!--complaint_listview_row-->
+    <string name="complaintId">ID reklamacji : </string>
+    <string name="complaintFurnitureId">ID mebla : </string>
+    <string name="complaintSenderName">Dodana przez : </string>
 </resources>

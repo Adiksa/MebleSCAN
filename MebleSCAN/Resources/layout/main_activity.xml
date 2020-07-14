@@ -1,41 +1,55 @@
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="10dp"
-    android:paddingVertical="10dp">
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:id="@+id/half"
-        android:layout_centerVertical="true"/>
+    android:paddingVertical="10dp"
+    android:weightSum="10"
+    android:orientation="vertical">
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/half">
+        android:layout_weight="5">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/stripesphoto"/>
+            android:src="@drawable/stripesphoto"
+            android:scaleType="centerCrop"
+            android:id="@+id/scanImage"/>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="@string/menu_scan"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black"
+            android:background="#88ffffff"
+            android:text="@string/menu_scan"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="5dp"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/half"
-        android:layout_alignParentBottom="true">
+        android:layout_weight="5">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/listaPhoto"
-            android:scaleType="center"/>
+            android:scaleType="centerCrop"
+            android:id="@+id/listImage"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/menu_list"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black"
+            android:background="#88ffffff"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="5dp"/>
     </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>

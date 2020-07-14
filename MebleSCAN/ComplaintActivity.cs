@@ -5,19 +5,18 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
-using Android.Media;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Com.Gigamole.Infinitecycleviewpager;
 
 namespace MebleSCAN
 {
-    [Activity(Label = "MainActivity", Theme = "@style/AppTheme.NoActionBar")]
-    public class MainActivity : BaseWithMenu
+    [Activity(Label = "ComplaintActivity")]
+    public class ComplaintActivity : BaseWithMenu
     {
-        private ImageView scan;
-        private ImageView list;
+        private HorizontalInfiniteCycleViewPager infiniteCycle;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -26,27 +25,18 @@ namespace MebleSCAN
             ComponentsLocalizer();
             ActionHooker();
         }
-
         protected override void ComponentsLocalizer()
         {
             base.ComponentsLocalizer();
-            stub.LayoutResource = Resource.Layout.main_activity;
+            stub.LayoutResource = Resource.Layout.complaint;
             stub.Inflate();
-            scan = FindViewById<ImageView>(Resource.Id.scanImage);
-            list = FindViewById<ImageView>(Resource.Id.listImage);
+            infiniteCycle = FindViewById<HorizontalInfiniteCycleViewPager>(Resource.Id.horizontal_viewpager);
+            List<string> photos = new List<string>();
+            photos.Add(GlobalVars.selectedComplaint.photo);
+            photos.Add(GlobalVars.selectedComplaint.photo);
+            photos.Add(GlobalVars.selectedComplaint.photo);
+            infiniteCycle.Adapter = new InfiniteCycleAdapter(photos, this);
         }
 
-        protected override void ActionHooker()
-        {
-            base.ActionHooker();
-            scan.Click += delegate
-            {
-
-            };
-            list.Click += delegate
-            {
-                StartActivity(typeof(ComplaintListActivity));
-            };
-        }
     }
 }

@@ -42,6 +42,10 @@
               "target": "Package",
               "version": "[2.0.4, )"
             },
+            "Xam.Plugins.Android.InfiniteCycleViewPager": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            },
             "Xamarin.Android.Support.Core.Utils": {
               "target": "Package",
               "version": "[28.0.0.3, )"
@@ -51,6 +55,10 @@
               "version": "[28.0.0.3, )"
             },
             "Xamarin.Android.Support.Design": {
+              "target": "Package",
+              "version": "[28.0.0.3, )"
+            },
+            "Xamarin.Android.Support.v4": {
               "target": "Package",
               "version": "[28.0.0.3, )"
             },

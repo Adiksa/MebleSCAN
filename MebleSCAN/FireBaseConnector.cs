@@ -82,5 +82,19 @@ namespace MebleSCAN
                 return -1;
             }
         }
+
+        public List<Complaint> GetComplaints()
+        {
+            try
+            {
+                this.testCon();
+                var resault = client.Get("Complaint");
+                return resault.ResultAs<List<Complaint>>();
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }
