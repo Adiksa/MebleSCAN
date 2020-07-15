@@ -25,7 +25,11 @@
     <string name="loginAs">Zalogowany jako : </string>
     <string name="singOut">Wyloguj sie</string>
   <!--complaint_listview_row-->
-    <string name="complaintId">ID reklamacji : </string>
-    <string name="complaintFurnitureId">ID mebla : </string>
-    <string name="complaintSenderName">Dodana przez : </string>
+    <string name="complaintId">ID reklamacji :</string>
+    <string name="complaintFurnitureId">ID mebla :</string>
+    <string name="complaintSenderName">Dodana przez :</string>
+  <!--complaint-->
+    <string name="complaintDescription">Opis reklamacji :</string>
+    <string name="accept">Zaakceptuj</string>
+    <string name="reject">Odrzuć</string>
 </resources>

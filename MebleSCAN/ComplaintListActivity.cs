@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -12,11 +12,12 @@ using Android.Widget;
 
 namespace MebleSCAN
 {
-    [Activity(Label = "ComplaintList")]
+    [Activity(Label = "ComplaintList", Theme = "@style/AppTheme.NoActionBar")]
     public class ComplaintListActivity : BaseWithMenu
     {
         private ListView listView;
         private List<Complaint> complaintList;
+        private ProgressBar progressBar;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -32,6 +33,7 @@ namespace MebleSCAN
             stub.LayoutResource = Resource.Layout.complaint_list;
             stub.Inflate();
             listView = FindViewById<ListView>(Resource.Id.complaintListView);
+            progressBar = FindViewById<ProgressBar>(Resource.Id.complaintListProgressBar);
         }
 
         protected override void ActionHooker()
@@ -46,15 +48,21 @@ namespace MebleSCAN
             StartActivity(typeof(ComplaintActivity));
         }
 
-        private void RefreshComplaintList()
+        private async void RefreshComplaintList()
         {
-            FireBaseConnector connector = new FireBaseConnector();
-            complaintList = connector.GetComplaints();
-            if(complaintList != null)
+            RunOnUiThread(() => progressBar.Visibility = ViewStates.Visible);
+            await Task.Run(() =>
             {
-                ComplaintListViewAdapter adapter = new ComplaintListViewAdapter(this, complaintList);
-                listView.Adapter = adapter;
-            }
+                FireBaseConnector connector = new FireBaseConnector();
+                complaintList = connector.GetComplaints();
+                if (complaintList != null)
+                {
+                    ComplaintListViewAdapter adapter = new ComplaintListViewAdapter(this, complaintList);
+                    RunOnUiThread(() => listView.Adapter = adapter);
+
+                }
+            });
+            RunOnUiThread(() => progressBar.Visibility = ViewStates.Invisible);
         }
 
     }

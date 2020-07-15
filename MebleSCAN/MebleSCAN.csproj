@@ -66,6 +66,7 @@
     <Compile Include="ComplaintActivity.cs" />
     <Compile Include="ComplaintListActivity.cs" />
     <Compile Include="ComplaintListViewAdapter.cs" />
+    <Compile Include="ComplaintProgressListViewAdapter.cs" />
     <Compile Include="FireBaseConnector.cs" />
     <Compile Include="GlobalVars.cs" />
     <Compile Include="InfiniteCycleAdapter.cs" />
@@ -178,6 +179,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\card_item.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\complaint_progress_listview_row.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

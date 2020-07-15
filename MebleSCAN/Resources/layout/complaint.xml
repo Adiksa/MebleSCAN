@@ -1,16 +1,69 @@
-
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingHorizontal="5dp"
+    android:paddingVertical="5dp">
     <com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
         android:id="@+id/horizontal_viewpager"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         app:icvp_scroll_duration="250"
         app:icvp_center_page_scale_offset="30dp"
         app:icvp_min_page_scale_offset="5dp"
         app:icvp_max_page_scale="0.8"
         app:icvp_min_page_scale="0.5"
-        app:icvp_medium_scaled="false"/>
+        app:icvp_medium_scaled="false"
+        android:layout_alignParentTop="true"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/horizontal_viewpager"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="5dp">
+        <View
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/halfHorizontal"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/halfHorizontal"
+            android:layout_above="@id/complaintAccept"
+            android:layout_alignParentTop="true">
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/complaintDescription"/>
+        </ScrollView>
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/complaintProgressListView"
+            android:layout_toRightOf="@id/halfHorizontal"
+            android:layout_above="@id/complaintAccept"
+            android:layout_alignParentTop="true"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/complaintAccept"
+            android:text="@string/accept"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/halfHorizontal"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/complaintReject"
+            android:text="@string/reject"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/halfHorizontal"/>
+    </RelativeLayout>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/complaintProgressBar"
+        android:visibility="invisible"/>
 </RelativeLayout>
