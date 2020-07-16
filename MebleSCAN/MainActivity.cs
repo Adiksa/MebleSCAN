@@ -41,7 +41,7 @@ namespace MebleSCAN
             base.ActionHooker();
             scan.Click += delegate
             {
-
+                StartActivity(typeof(CameraReaderActivity));
             };
             list.Click += delegate
             {

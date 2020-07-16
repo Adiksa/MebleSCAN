@@ -96,5 +96,47 @@ namespace MebleSCAN
                 return null;
             }
         }
+
+        public int ComplaintReject(bool reject)
+        {
+            try
+            {
+                this.testCon();
+                if(reject)
+                {
+                    GlobalVars.selectedComplaint.rejected = "1";
+                    GlobalVars.selectedComplaint.complaintProgress.Add(DateTime.Now.ToString() + " - Reklamacja odrzucona.");
+                }
+                else
+                {
+                    GlobalVars.selectedComplaint.rejected = "0";
+                    GlobalVars.selectedComplaint.complaintProgress.Add(DateTime.Now.ToString() + " - Reklamacja zaakceptowana.");
+                }
+                var setter = client.Set("Complaint/" + GlobalVars.selectedComplaint.id + "/rejected", GlobalVars.selectedComplaint.rejected);
+                setter = client.Set("Complaint/" + GlobalVars.selectedComplaint.id + "/complaintProgress", GlobalVars.selectedComplaint.complaintProgress);
+                return 1;
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+        public Complaint GetComplaint(string complaintID)
+        {
+            try
+            {
+                this.testCon();
+                var resault = client.Get("Complaint/" + complaintID + "/");
+                if (resault.ResultAs<Complaint>() != null)
+                {
+                    return resault.ResultAs<Complaint>();
+                }
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

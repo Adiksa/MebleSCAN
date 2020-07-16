@@ -16,8 +16,8 @@
     <string name="yes">Tak</string>
     <string name="no">Nie</string>
   <!--Ekran alertu wylogowania-->
-  <string name="logoutAlert">Wyloguj</string>
-  <string name="logoutAlertMsg">Czy na pewno chcesz się wylogować?</string>
+    <string name="logoutAlert">Wyloguj</string>
+    <string name="logoutAlertMsg">Czy na pewno chcesz się wylogować?</string>
   <!--Menu-->
     <string name="menu_scan">Skanowanie reklamacji</string>
     <string name="menu_list">Lista reklamacji</string>
@@ -32,4 +32,10 @@
     <string name="complaintDescription">Opis reklamacji :</string>
     <string name="accept">Zaakceptuj</string>
     <string name="reject">Odrzuć</string>
+    <string name="complaintAccepted">Reklamacja została zaakceptowana.</string>
+    <string name="complaintRejected">Reklamacja została odrzucona.</string>
+    <string name="complaintChanged">Reklamacja zmieniona</string>
+  <!--complaint-->
+    <string name="scanError">Bład skanowania</string>
+    <string name="barCodeError">Nie istnieje taka reklamacja</string>
 </resources>

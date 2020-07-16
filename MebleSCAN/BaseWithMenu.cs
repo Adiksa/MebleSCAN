@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
@@ -15,7 +16,7 @@ using Android.Widget;
 
 namespace MebleSCAN
 {
-    [Activity]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public abstract class BaseWithMenu : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {
         public DrawerLayout drawerLayout;
