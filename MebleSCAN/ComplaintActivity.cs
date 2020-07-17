@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
@@ -14,7 +15,7 @@ using Com.Gigamole.Infinitecycleviewpager;
 
 namespace MebleSCAN
 {
-    [Activity(Label = "ComplaintActivity", Theme = "@style/AppTheme.NoActionBar")]
+    [Activity(Label = "ComplaintActivity", Theme = "@style/AppTheme.NoActionBar", ScreenOrientation = ScreenOrientation.Portrait)]
     public class ComplaintActivity : BaseWithMenu
     {
         private HorizontalInfiniteCycleViewPager infiniteCycle;
@@ -31,11 +32,12 @@ namespace MebleSCAN
             SetContentView(Resource.Layout.base_with_menu);
             ComponentsLocalizer();
             ActionHooker();
+            navigationView.SetNavigationItemSelectedListener(this);
         }
         protected override void ComponentsLocalizer()
         {
             base.ComponentsLocalizer();
-            ComplaintDownload();
+            if(GlobalVars.newId) ComplaintDownload();
             stub.LayoutResource = Resource.Layout.complaint;
             stub.Inflate();
             infiniteCycle = FindViewById<HorizontalInfiniteCycleViewPager>(Resource.Id.horizontal_viewpager);
@@ -49,11 +51,10 @@ namespace MebleSCAN
                 Refresh();
                 textView.Text = GetString(Resource.String.complaintId) + " " + GlobalVars.selectedComplaint.id + "\n\n" +
                     GetString(Resource.String.complaintFurnitureId) + " " + GlobalVars.selectedComplaint.furnitureId + "\n\n" +
+                    GetString(Resource.String.complaintFurnitureMadeBy) + " " + GlobalVars.selectedComplaint.madeBy + "\n\n" +
                     GetString(Resource.String.complaintDescription) + " " + GlobalVars.selectedComplaint.description + "\n\n" +
                     GetString(Resource.String.complaintSenderName) + " " + GlobalVars.selectedComplaint.senderName;
                 List<string> photos = new List<string>();
-                photos.Add(GlobalVars.selectedComplaint.photo);
-                photos.Add(GlobalVars.selectedComplaint.photo);
                 photos.Add(GlobalVars.selectedComplaint.photo);
                 infiniteCycle.Adapter = new InfiniteCycleAdapter(photos, this);
             }
@@ -148,22 +149,17 @@ namespace MebleSCAN
 
         private void ComplaintDownload()
         {
+            GlobalVars.newId = false;
             FireBaseConnector connector = new FireBaseConnector();
             GlobalVars.selectedComplaint = connector.GetComplaint(GlobalVars.complaintID);
             if (GlobalVars.selectedComplaint == null)
             {
-                if (GlobalVars.lastToastTime == null)
+                
+                if (GlobalVars.ToastTimeCheck())
                 {
                     GlobalVars.lastToastTime = DateTime.UtcNow;
-                    Toast.MakeText(this, GetString(Resource.String.barCodeError), ToastLength.Short).Show();
-                }
-                else
-                {
-                    if((DateTime.UtcNow-GlobalVars.lastToastTime).TotalSeconds>2.0)
-                    {
-                        GlobalVars.lastToastTime = DateTime.UtcNow;
-                        Toast.MakeText(this, GetString(Resource.String.barCodeError), ToastLength.Short).Show();
-                    }
+                    if (!connector.connection) Toast.MakeText(this, GetString(Resource.String.noInternetConnection), ToastLength.Short).Show();
+                    else Toast.MakeText(this, GetString(Resource.String.barCodeError), ToastLength.Short).Show(); 
                 }
                 Finish();
                 StartActivity(typeof(CameraReaderActivity));

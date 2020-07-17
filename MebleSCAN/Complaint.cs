@@ -22,6 +22,7 @@ namespace MebleSCAN
         public List<string> complaintProgress { get; set; }
         public string senderName { get; set; }
         public string rejected {get; set;}
+        public string madeBy { get; set; }
 
         public bool Correct()
         {

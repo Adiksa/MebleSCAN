@@ -26,6 +26,7 @@ namespace MebleSCAN
             ComponentsLocalizer();
             ActionHooker();
             RefreshComplaintList();
+            navigationView.SetNavigationItemSelectedListener(this);
         }
         protected override void ComponentsLocalizer()
         {

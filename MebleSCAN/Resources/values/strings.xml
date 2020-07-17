@@ -35,7 +35,12 @@
     <string name="complaintAccepted">Reklamacja została zaakceptowana.</string>
     <string name="complaintRejected">Reklamacja została odrzucona.</string>
     <string name="complaintChanged">Reklamacja zmieniona</string>
+    <string name="complaintFurnitureMadeBy">Mebel złożony przez :</string>
   <!--complaint-->
     <string name="scanError">Bład skanowania</string>
     <string name="barCodeError">Nie istnieje taka reklamacja</string>
+  <!--mainActivity-->
+    <string name="mainActivityTitle">Zeskanuj reklamację lub wybierz z listy</string>
+    <string name="mainActivityScan">Zeskanuj reklamację</string>
+    <string name="mainActivityList">Wybierz z listy</string>
 </resources>

@@ -110,6 +110,7 @@ namespace MebleSCAN
         public void SaveScanAndDismiss(string barcode)
         {
             GlobalVars.complaintID = barcode.Substring(barcode.IndexOf('{') + 1, barcode.Length - barcode.IndexOf('{') - 2);
+            GlobalVars.newId = true;
             Log.Debug("complaint:", GlobalVars.complaintID);
             StartActivity(typeof(ComplaintActivity));
             Finish();

@@ -68,13 +68,15 @@ namespace MebleSCAN
             logoutBtn = FindViewById<Button>(Resource.Id.button_sing_out);
         }
 
-        public bool OnNavigationItemSelected(IMenuItem item)
+        public virtual bool OnNavigationItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
             {
                 case Resource.Id.menu_scan:
+                    StartActivity(typeof(CameraReaderActivity));
                     break;
                 case Resource.Id.menu_list:
+                    StartActivity(typeof(ComplaintListActivity));
                     break;
             }
             drawerLayout.CloseDrawer(navigationView);

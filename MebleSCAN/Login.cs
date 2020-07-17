@@ -6,10 +6,11 @@ using Android.Widget;
 using System;
 using System.Threading.Tasks;
 using Android.Views;
+using Android.Content.PM;
 
 namespace MebleSCAN
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait)]
     public class Login : AppCompatActivity
     {
         private EditText userLogin;
@@ -60,16 +61,11 @@ namespace MebleSCAN
                 {
                     progressBar.Visibility = ViewStates.Invisible;
                 }));
-                if (res == 2)
-                {
-                    Finish();
-                    
-                }
                 if (res == 1)
                 {
+                    GlobalVars.login = login.login;
                     StartActivity(typeof(MainActivity));
                     Finish();
-
                 }
                 if (!connection.connection)
                 {

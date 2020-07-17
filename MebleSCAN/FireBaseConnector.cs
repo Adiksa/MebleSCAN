@@ -63,7 +63,7 @@ namespace MebleSCAN
                 UserLogins res = resault.ResultAs<UserLogins>();
                 if (res != null)
                 {
-                    if (login.login == res.login && login.userPassword == res.userPassword)
+                    if (login.login == res.login && login.userPassword == res.userPassword && res.admin == true)
                     {
                         return 1;
                     }

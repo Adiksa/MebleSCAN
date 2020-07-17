@@ -6,51 +6,75 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="10dp"
     android:paddingVertical="10dp"
-    android:weightSum="10"
     android:orientation="vertical">
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="5">
-        <ImageView
+        android:text="@string/mainActivityTitle"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center_horizontal"
+        android:paddingVertical="60dp"
+        android:layout_marginHorizontal="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="10">
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/stripesphoto"
-            android:scaleType="centerCrop"
-            android:id="@+id/scanImage"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/black"
-            android:background="#88ffffff"
-            android:text="@string/menu_scan"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="5dp"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="5">
-        <ImageView
+            android:layout_weight="5"
+            android:id="@+id/scanFrameLayout"
+            android:background="?attr/selectableItemBackgroundBorderless">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/stripesphoto"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/scanImage"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/black"
+                    android:background="#88ffffff"
+                    android:text="@string/mainActivityScan"
+                    android:paddingHorizontal="5dp"
+                    android:paddingVertical="5dp"/>
+            </RelativeLayout>
+        </FrameLayout>
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/listaPhoto"
-            android:scaleType="centerCrop"
-            android:id="@+id/listImage"
-            android:background="?attr/selectableItemBackgroundBorderless"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/menu_list"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/black"
-            android:background="#88ffffff"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="5dp"/>
-    </RelativeLayout>
+            android:layout_weight="5"
+            android:id="@+id/listFrameLayout"
+            android:background="?attr/selectableItemBackgroundBorderless">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/listaPhoto"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/listImage"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/mainActivityList"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/black"
+                    android:background="#88ffffff"
+                    android:paddingHorizontal="5dp"
+                    android:paddingVertical="5dp"/>
+            </RelativeLayout>
+        </FrameLayout>
+    </LinearLayout>
 </LinearLayout>
