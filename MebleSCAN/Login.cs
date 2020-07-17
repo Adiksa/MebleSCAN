@@ -63,7 +63,7 @@ namespace MebleSCAN
                 }));
                 if (res == 1)
                 {
-                    GlobalVars.login = login.login;
+                    GlobalVars.login = userLogin.Text;
                     StartActivity(typeof(MainActivity));
                     Finish();
                 }

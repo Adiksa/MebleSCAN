@@ -31,9 +31,6 @@ namespace MebleSCAN
             SetContentView(Resource.Layout.base_with_menu);
             ComponentsLocalizer();
             ActionHooker();
-            headerview = navigationView.GetHeaderView(0);
-            loginAs = headerview.FindViewById<TextView>(Resource.Id.loginAs);
-            loginAs.Text += " " + GlobalVars.login;
             navigationView.SetNavigationItemSelectedListener(this);
         }
 
@@ -66,6 +63,9 @@ namespace MebleSCAN
             drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
             logoutBtn = FindViewById<Button>(Resource.Id.button_sing_out);
+            headerview = navigationView.GetHeaderView(0);
+            loginAs = headerview.FindViewById<TextView>(Resource.Id.loginAs);
+            loginAs.Text += " " + GlobalVars.login;
         }
 
         public virtual bool OnNavigationItemSelected(IMenuItem item)
