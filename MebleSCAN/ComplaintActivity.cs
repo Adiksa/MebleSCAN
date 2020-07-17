@@ -7,6 +7,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Com.Gigamole.Infinitecycleviewpager;
@@ -25,7 +26,6 @@ namespace MebleSCAN
         private bool reject;
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            ComplaintDownload();
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.base_with_menu);
@@ -35,6 +35,7 @@ namespace MebleSCAN
         protected override void ComponentsLocalizer()
         {
             base.ComponentsLocalizer();
+            ComplaintDownload();
             stub.LayoutResource = Resource.Layout.complaint;
             stub.Inflate();
             infiniteCycle = FindViewById<HorizontalInfiniteCycleViewPager>(Resource.Id.horizontal_viewpager);
@@ -43,16 +44,19 @@ namespace MebleSCAN
             acceptBtn = FindViewById<Button>(Resource.Id.complaintAccept);
             rejectBtn = FindViewById<Button>(Resource.Id.complaintReject);
             progressBar = FindViewById<ProgressBar>(Resource.Id.complaintProgressBar);
-            Refresh();
-            textView.Text = GetString(Resource.String.complaintId) + " " + GlobalVars.selectedComplaint.id + "\n\n" +
-                GetString(Resource.String.complaintFurnitureId) + " " + GlobalVars.selectedComplaint.furnitureId + "\n\n" +
-                GetString(Resource.String.complaintDescription) + " " + GlobalVars.selectedComplaint.description + "\n\n" +
-                GetString(Resource.String.complaintSenderName) + " " + GlobalVars.selectedComplaint.senderName;
-            List<string> photos = new List<string>();
-            photos.Add(GlobalVars.selectedComplaint.photo);
-            photos.Add(GlobalVars.selectedComplaint.photo);
-            photos.Add(GlobalVars.selectedComplaint.photo);
-            infiniteCycle.Adapter = new InfiniteCycleAdapter(photos, this);
+            if(GlobalVars.selectedComplaint != null)
+            {
+                Refresh();
+                textView.Text = GetString(Resource.String.complaintId) + " " + GlobalVars.selectedComplaint.id + "\n\n" +
+                    GetString(Resource.String.complaintFurnitureId) + " " + GlobalVars.selectedComplaint.furnitureId + "\n\n" +
+                    GetString(Resource.String.complaintDescription) + " " + GlobalVars.selectedComplaint.description + "\n\n" +
+                    GetString(Resource.String.complaintSenderName) + " " + GlobalVars.selectedComplaint.senderName;
+                List<string> photos = new List<string>();
+                photos.Add(GlobalVars.selectedComplaint.photo);
+                photos.Add(GlobalVars.selectedComplaint.photo);
+                photos.Add(GlobalVars.selectedComplaint.photo);
+                infiniteCycle.Adapter = new InfiniteCycleAdapter(photos, this);
+            }
         }
 
         protected override void ActionHooker()
@@ -146,11 +150,23 @@ namespace MebleSCAN
         {
             FireBaseConnector connector = new FireBaseConnector();
             GlobalVars.selectedComplaint = connector.GetComplaint(GlobalVars.complaintID);
-            GlobalVars.newId = false;
-            if(GlobalVars.selectedComplaint==null)
+            if (GlobalVars.selectedComplaint == null)
             {
-                StartActivity(typeof(CameraReaderActivity));
+                if (GlobalVars.lastToastTime == null)
+                {
+                    GlobalVars.lastToastTime = DateTime.UtcNow;
+                    Toast.MakeText(this, GetString(Resource.String.barCodeError), ToastLength.Short).Show();
+                }
+                else
+                {
+                    if((DateTime.UtcNow-GlobalVars.lastToastTime).TotalSeconds>2.0)
+                    {
+                        GlobalVars.lastToastTime = DateTime.UtcNow;
+                        Toast.MakeText(this, GetString(Resource.String.barCodeError), ToastLength.Short).Show();
+                    }
+                }
                 Finish();
+                StartActivity(typeof(CameraReaderActivity));
             }
         }
     }

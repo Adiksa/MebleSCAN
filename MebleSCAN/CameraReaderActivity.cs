@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Android.Support.V7.App;
 using MiniGun.Models;
 using Android.Widget;
+using System.Collections.Generic;
 
 namespace MebleSCAN
 {
@@ -26,6 +27,7 @@ namespace MebleSCAN
         private CameraSource cameraSource;
         private BarcodeDetector barcodeDetector;
         private ProgressBar progressBar;
+        private string lastScaned;
 
         private const int RequestCameraPermissionID = 1001;
 
@@ -95,21 +97,20 @@ namespace MebleSCAN
 
         public async void ReceiveDetections(Detections detections)
         {
-            await Task.Run(() =>
+            SparseArray barcodes = detections.DetectedItems;
+            if (barcodes.Size() != 0 && lastScaned != ((Barcode)barcodes.ValueAt(0)).DisplayValue)
             {
-                SparseArray barcodes = detections.DetectedItems;
-
-                if (barcodes.Size() != 0)
-                {
-                    SaveScanAndDismiss(((Barcode)barcodes.ValueAt(0)).DisplayValue);
-                }
-            });
+                lastScaned = ((Barcode)barcodes.ValueAt(0)).DisplayValue;
+                RunOnUiThread(() => progressBar.Visibility = ViewStates.Visible);
+                await Task.Run(() => SaveScanAndDismiss(lastScaned));
+                RunOnUiThread(() => progressBar.Visibility = ViewStates.Invisible);
+            }
         }
 
         public void SaveScanAndDismiss(string barcode)
         {
-            GlobalVars.complaintID = barcode;
-            GlobalVars.newId = true;
+            GlobalVars.complaintID = barcode.Substring(barcode.IndexOf('{') + 1, barcode.Length - barcode.IndexOf('{') - 2);
+            Log.Debug("complaint:", GlobalVars.complaintID);
             StartActivity(typeof(ComplaintActivity));
             Finish();
         }
