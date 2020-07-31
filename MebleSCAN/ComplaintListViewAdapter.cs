@@ -49,9 +49,11 @@ namespace MebleSCAN
             TextView id = row.FindViewById<TextView>(Resource.Id.complaintRowId);
             TextView furnitureid = row.FindViewById<TextView>(Resource.Id.complaintRowFrunitureID);
             TextView sendername = row.FindViewById<TextView>(Resource.Id.complaintSenderName);
+            ImageView imageView = row.FindViewById<ImageView>(Resource.Id.imageComplaint);
             id.Text += mlist[position].id;
             furnitureid.Text += mlist[position].furnitureId;
             sendername.Text += mlist[position].senderName;
+            imageView.SetImageBitmap(Complaint.convertBase64ToBitmap(mlist[position].photo[0]));
             return row;
         }
 

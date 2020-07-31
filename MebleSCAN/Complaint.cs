@@ -17,7 +17,7 @@ namespace MebleSCAN
     {
         public string id { get; set; }
         public string description { get; set; }
-        public string photo { get; set; }
+        public List<string> photo { get; set; }
         public string furnitureId { get; set; }
         public List<string> complaintProgress { get; set; }
         public string senderName { get; set; }

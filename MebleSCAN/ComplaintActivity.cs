@@ -54,9 +54,7 @@ namespace MebleSCAN
                     GetString(Resource.String.complaintFurnitureMadeBy) + " " + GlobalVars.selectedComplaint.madeBy + "\n\n" +
                     GetString(Resource.String.complaintDescription) + " " + GlobalVars.selectedComplaint.description + "\n\n" +
                     GetString(Resource.String.complaintSenderName) + " " + GlobalVars.selectedComplaint.senderName;
-                List<string> photos = new List<string>();
-                photos.Add(GlobalVars.selectedComplaint.photo);
-                infiniteCycle.Adapter = new InfiniteCycleAdapter(photos, this);
+                infiniteCycle.Adapter = new InfiniteCycleAdapter(GlobalVars.selectedComplaint.photo, this);
             }
         }
 
